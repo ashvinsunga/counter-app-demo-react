@@ -2,18 +2,26 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    count: this.props.value,
   };
 
-  constructor() {
-    super();
-    this.handleIncrement = this.handleIncrement.bind(this);
-  }
+  //   Needed to comment this out since it affects accessing the 'this' keyword of props.value
+  //   constructor() {
+  //     super();
+  //     this.handleIncrement = this.handleIncrement.bind(this);
+  //   }
 
-  handleIncrement() {
+  // Arrow function version of this function is used since this will not reset the bind to 'this' of Component Class
+  //   handleIncrement() {
+  //     this.setState({ count: this.state.count + 1 });
+  //   }
+
+  handleIncrement = () => {
     this.setState({ count: this.state.count + 1 });
-  }
+  };
+
   render() {
+    console.log("props", this.props);
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
